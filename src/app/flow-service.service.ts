@@ -19,6 +19,10 @@ export class FlowService {
     return this.htppClient.get('assets/data/flows.json');
   }
 
+  public getReservations():Observable<any> {
+    return this.htppClient.get('assets/data/reservations.json');
+  }
+
   // public getCompanies(): Observable<any> {
   //   return of(data);
   // }

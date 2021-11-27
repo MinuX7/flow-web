@@ -14,6 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Step4Component } from './step4/step4.component';
 import { FlowComponent } from './flow/flow.component';
 import { Step5Component } from './step5/step5.component';
+import {MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,12 @@ import { Step5Component } from './step5/step5.component';
     HttpClientModule,
     FormsModule,
     DpDatePickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [FlowService],
   bootstrap: [AppComponent]

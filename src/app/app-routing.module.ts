@@ -9,8 +9,8 @@ import { FlowComponent } from './flow/flow.component';
 
 const routes: Routes = [
   { path: 'flow', component: FlowComponent },
-  { path: 'flow/:company', component: FlowComponent }
-  // { path: '', redirectTo: '/flow', pathMatch: 'full' }
+  { path: 'flow/:company', component: FlowComponent },
+  { path: '', redirectTo: '/flow', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -10,7 +10,7 @@ import { FlowModel } from '../model/flowmodel';
   styleUrls: ['./flow.component.css']
 })
 export class FlowComponent implements OnInit {
-  stepActive= 1;
+  stepActive= 3;
   flowModel: FlowModel = new FlowModel();
   companyParam: string;
   constructor(activatedRoute: ActivatedRoute) {

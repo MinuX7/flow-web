@@ -1,4 +1,7 @@
+
+
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .content {
     padding: 24px 30px;
 }
@@ -21,5 +24,13 @@ div.right {
 
 .bottom-buttons { 
     margin-top: 20px;
+}
+.mat-calendar-body-cell.mat-calendar-body-disabled {
+    background-color:red;
+}
+
+.mat-calendar-body-cell {
+    background-color: lightgreen;
+    border:1px solid white;
 }
 
