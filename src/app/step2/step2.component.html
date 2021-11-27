@@ -1,0 +1,32 @@
+<div class="row step-content">   
+<div *ngFor="let companyFlow of companyFlows " class="col-md-4 col-sm-6">   
+    <div class="card card-default flow-card">
+        <div class="card-header" (click)="clickFlow(companyFlow)" [ngClass]="companyFlow.selected ? 'card-selected': 'card-unselected' ">
+            <span>
+            {{companyFlow.name}}     
+            </span>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li *ngFor="let flowDocument of companyFlow.documents"> 
+                    <span *ngIf="!flowDocument.downloadable"> {{ flowDocument.name}}</span>
+                    <a *ngIf="flowDocument.downloadable" class="link-primary" 
+                    (click)="downloadFile(flowDocument.fileLocation)">  {{ flowDocument.name}}  </a>
+                </li> 
+            </ul>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+          <button class="btn btn-primary" (click)="toStep(1)"> Previous </button>  
+    </div>
+    <div class="col-md-6">
+        <div class="right">
+            <button type="button" class="btn btn-primary right" (click)="toStep(3)" 
+                [disabled]="!selectedFlow"> Next </button> 
+        </div>
+    </div>
+</div>

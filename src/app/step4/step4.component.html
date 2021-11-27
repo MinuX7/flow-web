@@ -1,0 +1,47 @@
+<div class="step-content">
+<form [formGroup]="userForm">
+
+  <div class="row">
+    <div class="col-md-4">
+      <label for="first-name">First Name: </label>
+      <input id="first-name" class="form-control" type="text" formControlName="firstName">
+      <span class="text-danger" 
+            *ngIf="userForm.controls.firstName.touched && userForm.controls.firstName.errors?.required"> First name is required
+        </span>
+    </div>  
+    <div class="col-md-4">
+      <label for="last-name">Last Name: </label>
+      <input id="last-name" type="text" class="form-control" formControlName="lastName">
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-4">
+      <label for="email">Email: </label>
+      <input id="email" type="email"  class="form-control" formControlName="email" />
+    </div>
+      <div class="col-md-4">
+        <label for="user-file">File: </label>
+        <input id="user-file" type="file" formControlName="file" class="form-control" (change)="onFileChange($event)" />
+      </div>
+    </div>
+   <div class="row">
+    <div class="col-md-8">
+      <label for="comment">Comment: </label>
+        <textarea id="comment" class="form-control" formControlName="comment" ></textarea>
+    </div>
+</div>
+
+</form>
+</div>
+<div class="bottom-buttons">
+<div class="row bottom-buttons">
+  <div class="col-md-6">
+        <button class="btn btn-primary" (click)="toStep(3)"> Previous </button>  
+  </div>
+  <div class="col-md-6">
+      <div class="right">
+          <button type="button" class="btn btn-primary right" (click)="toStep(5)" [disabled]="!userForm.valid" > Next </button> 
+      </div>
+  </div>
+</div>
+</div>

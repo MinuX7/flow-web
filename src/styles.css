@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+.content {
+    padding: 24px 30px;
+}
+
+div.right {
+    float: right;
+}
+
+.drop-down-selection {
+    width: 70%;
+}
+
+.dropdown-menu {
+    width: 70%
+}
+
+.step-content {
+    min-height: 150px;
+}
+
+.bottom-buttons { 
+    margin-top: 20px;
+}
+

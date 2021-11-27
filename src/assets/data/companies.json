@@ -1,0 +1,16 @@
+[{
+    "id": "primaria-tm",
+    "name": "Primaria Timisoara",
+    "city" : "Timisoara"
+},
+{
+    "id": "drcv-tm",
+    "name": "D.R.C.P.V Timisoara",
+    "city" : "Sibiu"
+}, 
+{
+    "id": "company3",
+    "name": "Company3",
+    "city" : "Sibiu"
+}
+]

@@ -1,0 +1,19 @@
+.dp-calendar-wrapper button {
+    border: none;
+}
+
+.time-container {
+    max-height: 140px;
+    overflow: auto;
+    width: 96px;
+}
+
+.time-slot-item {
+    border: 1px solid #24c724;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.time-slot-item.slot-selected {
+    background-color: lightblue;
+}

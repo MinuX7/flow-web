@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-12">
+     <wizard-bar [stepActive]="stepActive"></wizard-bar>
+   </div>
+ </div>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10 step-content">
+    <step1 *ngIf="stepActive == 1" [selectedCompany]="flowModel.company" [companyParam]="companyParam"
+                (toStepEvent)="toStep($event)" (companyChangeEmitter)="onCompanyChanged($event)" >
+    </step1>
+    <step2 *ngIf="stepActive == 2" [selectedFlow]="flowModel.flow"
+                (toStepEvent)="toStep($event)" (flowChangedEvent)="onFlowChanged($event)"> 
+    </step2>
+    <step3 *ngIf="stepActive == 3" (toStepEvent)="toStep($event)" (dateChanged)="onDateChanged($event)" ></step3>
+    <step4 *ngIf="stepActive == 4" (toStepEvent)="toStep($event)" (personGroupChanged)="onPersonGroupChanged($event)"></step4>
+    <step5 *ngIf="stepActive == 5" [flowModel]="flowModel" >  </step5>
+  </div>
+</div>

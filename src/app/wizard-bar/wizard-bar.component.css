@@ -1,0 +1,52 @@
+div.wizard-content {
+    margin-right:30px;
+}
+ol.wizard-list > li.step-wizard {        
+    display: table-cell;
+    height: 30px;        
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    border: 1px solid #3E93E5;
+}
+ol.wizard-list > li.step-wizard > div {         
+    position:relative;        
+    line-height: 30px; /* equal to the list item's height */
+    height:100%;
+    width: 100%;         
+}
+ol.wizard-list > li.step-wizard.active {
+    background-color: #3E93E5;
+    cursor: pointer;
+    color: white;
+}
+ol.wizard-list {
+    display: table;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+}
+ol.wizard-list > li.step-wizard > div:after, ol.wizard-list > li.step-wizard > div:before {
+    content:"";
+    display:inline-block;        
+    border-width: 16px;
+    border-style: solid;
+    width: 0px;
+    height: 0px;
+    left: 100%;
+    top: -1px;        
+    position: absolute;        
+    z-index: 1;
+}
+ol.wizard-list > li.step-wizard > div:after, ol.wizard-list > li.step-wizard.active > div:before {
+    border-color: transparent transparent transparent #3E93E5;
+}
+ol.wizard-list > li.step-wizard > div:before {
+    border-width: 14px;
+    display: block;
+    border-color: transparent transparent transparent #ffffff;
+    z-index: 2;
+    top:1px;
+}

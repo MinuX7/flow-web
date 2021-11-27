@@ -1,0 +1,12 @@
+div.card-selected {
+    background-color: blue;
+    color: white;
+}
+
+div.card-header {
+    cursor: pointer;
+}
+
+div.flow-card {
+    max-width: 70%;
+}

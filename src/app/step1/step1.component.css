@@ -1,0 +1,22 @@
+.spinner-modal {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border: 1px solid green;
+    background-color: black;
+    position: absolute;
+    z-index: 10000;
+    opacity: 0.7;
+}
+
+#spinner-circle {
+    position: absolute;
+    margin-top: 50%;
+    margin-left: 50%;
+}
+
+.company-selector {
+    text-align: center;
+}
+
