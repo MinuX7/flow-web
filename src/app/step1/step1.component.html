@@ -6,12 +6,12 @@
     <a class="btn btn-secondary dropdown-toggle drop-down-selection" role="button" id="dropdownMenuLink" 
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span *ngIf="!selectedCompany"> Chose company </span>
-      <span *ngIf="selectedCompany"> {{selectedCompany.name}} </span>
+      <span *ngIf="selectedCompany"> {{selectedCompany.companyName}} </span>
     </a>
   
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
        <a class="dropdown-item" (click)="choseCompany(null)"> ... </a> 
-      <a *ngFor="let company of companies" class="dropdown-item" (click)="choseCompany(company)"> {{company.name}}</a>
+      <a *ngFor="let company of companies" class="dropdown-item" (click)="choseCompany(company)"> {{company.companyName}}</a>
     </div>
   </div>
 </div>

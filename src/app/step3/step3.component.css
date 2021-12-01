@@ -21,5 +21,6 @@
 
 .slot-busy {
 background-color: red;
+cursor: not-allowed;
 }
 

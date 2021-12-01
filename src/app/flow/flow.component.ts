@@ -10,7 +10,7 @@ import { FlowModel } from '../model/flowmodel';
   styleUrls: ['./flow.component.css']
 })
 export class FlowComponent implements OnInit {
-  stepActive= 3;
+  stepActive= 1;
   flowModel: FlowModel = new FlowModel();
   companyParam: string;
   constructor(activatedRoute: ActivatedRoute) {
@@ -32,6 +32,10 @@ export class FlowComponent implements OnInit {
 
   onFlowChanged(event) {
     this.flowModel.flow = event.selectedflow;
+  }
+
+  onBookingOfficeChanged(event) {
+    this.flowModel.bookingOffice= event;
   }
 
   onDateChanged(event) {

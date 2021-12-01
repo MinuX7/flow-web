@@ -28,7 +28,7 @@ export class Step1Component implements OnInit {
   ngOnInit(): void {
     this._flowService.getHttpCompanies().subscribe( data => {
       this.companies = data;
-      let paramCompany = this.companies.find(c => c.id === this.companyParam)
+      let paramCompany = this.companies.find(c => c.companyId === this.companyParam)
       if (paramCompany){
         this.selectedCompany = paramCompany;
       }

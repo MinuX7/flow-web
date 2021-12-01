@@ -6,6 +6,7 @@ export class FlowModel {
 public company: Company;
 public flow: any;
 public flowDate: moment.Moment;
+public bookingOffice: any;
 public user: any;
 
 

@@ -25,12 +25,18 @@ div.right {
 .bottom-buttons { 
     margin-top: 20px;
 }
+
 .mat-calendar-body-cell.mat-calendar-body-disabled {
     background-color:red;
-}
+} 
 
 .mat-calendar-body-cell {
     background-color: lightgreen;
     border:1px solid white;
+}
+
+
+.mat-calendar-body-selected {
+    background-color: blue;
 }
 

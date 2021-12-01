@@ -1,6 +1,10 @@
-div.card-selected {
+div.card-selected div.card-header {
     background-color: blue;
     color: white;
+}
+
+div.card-selected div.card-body {
+    background-color: lightblue;
 }
 
 div.card-header {

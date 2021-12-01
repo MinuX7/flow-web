@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FlowService } from '../flow-service.service';
+import { Company } from '../model/company';
 
 @Component({
   selector: 'step2',
@@ -10,6 +11,9 @@ import { FlowService } from '../flow-service.service';
 export class Step2Component implements OnInit {
 
   companyFlows: Array<any>;
+
+  @Input()
+  selectedCompany: Company;
 
   @Output()
   toStepEvent = new EventEmitter<number>();
@@ -24,14 +28,17 @@ export class Step2Component implements OnInit {
    }
 
   ngOnInit(): void {
-    this._flowService.getCompanyFlows().subscribe (
+    this._flowService.getCompanyFlows(this.selectedCompany).subscribe (
       data=> {
         this.companyFlows = data;
         this.companyFlows.forEach(flow => {
-          if (flow.id === this.selectedFlow?.id) {
+          if (flow.flowId === this.selectedFlow?.flowId) {
             flow.selected = true;
           }
         })
+      },
+      error => {
+        console.error(error);
       }
     )
   }

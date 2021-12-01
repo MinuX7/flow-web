@@ -1,5 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import * as moment from 'moment';
 import { FlowService } from '../flow-service.service';
 
@@ -16,12 +17,20 @@ export class Step3Component implements OnInit {
 
   @Output()
   dateChanged = new EventEmitter<any>();
+
+  @Output()
+  bookingOfficeChanged = new EventEmitter<any>();
   
   @Input()
   selectedDate;
+  
+  @Input()
+  selectedBookingOffice: any;
   dpConfig: any;
 
   reservations: Array<any>;
+
+  bookingOffices: Array<any>= new Array();
 
   dayTimeSlots: Array<any> = new Array();
   startDate = new Date(2021, 0, 2);
@@ -40,10 +49,18 @@ export class Step3Component implements OnInit {
     this._flowService.getReservations().subscribe(
       data => this.reservations = data
     );
+    this._flowService.getBookingOffice().subscribe(
+      data=> this.bookingOffices = data
+    )
   }
   
   toStep(number) {
     this.toStepEvent.emit(number);
+  }
+
+  choseBookingOffice(bo) {
+    this.selectedBookingOffice = bo;
+    this.bookingOfficeChanged.emit(bo);
   }
 
   isFullyBooked(date: moment.Moment) {
@@ -99,4 +116,5 @@ export class Step3Component implements OnInit {
       this.dateChanged.emit(timeSlot.time);
     }
   }
+
 }

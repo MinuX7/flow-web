@@ -22,7 +22,7 @@ export class Step4Component implements OnInit {
       firstName: new FormControl('',[Validators.required]),
       lastName: new FormControl(''),
       email: new FormControl(''),
-      comment: new FormControl('Abcd'),
+      comment: new FormControl(''),
       file: new FormControl(),
       fileContent: new FormControl
     });

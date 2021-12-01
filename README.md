@@ -25,3 +25,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Deploy in AWS
+* `ng build --configuration=production`
+* `docker build -t flow-app .`
+* `docker tag flow-app 904262290464.dkr.ecr.eu-west-1.amazonaws.com/flow-frontend:v1.0`
+* `docker push 904262290464.dkr.ecr.eu-west-1.amazonaws.com/flow-frontend:v1.0`

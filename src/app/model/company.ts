@@ -1,10 +1,13 @@
 export class Company {
-id: string;
-name: string;
-city: string;
 
-    constructor(name:string, city: string) {
-        this.name=name;
-        this.city = city;
+
+    constructor(public companyId: string,
+        public companyName: string,
+        public description: string,
+        public addressLine: string,
+        public zipCode: string,
+        public city: string,
+        public county: string) {
+     
     }
 }

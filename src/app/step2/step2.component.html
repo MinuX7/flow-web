@@ -1,7 +1,7 @@
 <div class="row step-content">   
 <div *ngFor="let companyFlow of companyFlows " class="col-md-4 col-sm-6">   
-    <div class="card card-default flow-card">
-        <div class="card-header" (click)="clickFlow(companyFlow)" [ngClass]="companyFlow.selected ? 'card-selected': 'card-unselected' ">
+    <div class="card card-default flow-card" [ngClass]="companyFlow.selected ? 'card-selected': 'card-unselected' ">
+        <div class="card-header" (click)="clickFlow(companyFlow)" >
             <span>
             {{companyFlow.name}}     
             </span>
@@ -9,9 +9,9 @@
         <div class="card-body">
             <ul>
                 <li *ngFor="let flowDocument of companyFlow.documents"> 
-                    <span *ngIf="!flowDocument.downloadable"> {{ flowDocument.name}}</span>
+                    <span *ngIf="!flowDocument.downloadable"> {{ flowDocument.documentName}}</span>
                     <a *ngIf="flowDocument.downloadable" class="link-primary" 
-                    (click)="downloadFile(flowDocument.fileLocation)">  {{ flowDocument.name}}  </a>
+                    (click)="downloadFile(flowDocument.fileLocation)">  {{ flowDocument.documentName}}  </a>
                 </li> 
             </ul>
         </div>
