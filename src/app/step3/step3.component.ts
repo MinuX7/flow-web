@@ -1,8 +1,9 @@
-import { ThrowStmt } from '@angular/compiler';
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
-import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 import { FlowService } from '../flow-service.service';
+import { BookingOffice } from '../model/bookingOffice';
+import { FlowModel } from '../model/flowmodel';
 
 @Component({
   selector: 'step3',
@@ -26,31 +27,29 @@ export class Step3Component implements OnInit {
   
   @Input()
   selectedBookingOffice: any;
-  dpConfig: any;
 
-  reservations: Array<any>;
-
-  bookingOffices: Array<any>= new Array();
-
+  @Input()
+  flowModel: FlowModel;
+  busySlots: Array<any>= new Array();
+  busyDates: Array<any> = new Array();
+  bookingOffices: Array<BookingOffice>= new Array();
   dayTimeSlots: Array<any> = new Array();
-  startDate = new Date(2021, 0, 2);
   minDate = new Date();
   maxDate = new Date(2022,0,1);
+  
   dateFilter = (date: Date) => {
     let momentDate = moment(date);
     return momentDate.get('day') !==6 && momentDate.get('day') !== 0 && !this.isFullyBooked(momentDate);
   }
   selecteDate: moment.Moment;
   constructor(private _flowService: FlowService) {
-    
+    this.busyDates.push(moment('2021-12-09'));
+    this.busyDates.push(moment('2021-12-15'));
   }
 
   ngOnInit(): void {
-    this._flowService.getReservations().subscribe(
-      data => this.reservations = data
-    );
-    this._flowService.getBookingOffice().subscribe(
-      data=> this.bookingOffices = data
+    this._flowService.getFlowBookingOffices(this.flowModel.company, this.flowModel.flow).subscribe(
+      data=> this.bookingOffices = data as Array<any>
     )
   }
   
@@ -58,13 +57,30 @@ export class Step3Component implements OnInit {
     this.toStepEvent.emit(number);
   }
 
-  choseBookingOffice(bo) {
+  choseBookingOffice(bo:BookingOffice) {
     this.selectedBookingOffice = bo;
     this.bookingOfficeChanged.emit(bo);
-  }
+    this._flowService.getBookingOfficeBusySlots(this.flowModel.company, this.flowModel.bookingOffice).subscribe(
+      data => {
+        this.busySlots =(data as Array<any>).map(d => { 
+         let temp = {date: moment(d).tz('Europe/Bucharest')}
+        return temp;
+        });
+        this.dateFilter = (date: Date) => {
+          let momentDate = moment(date);
+          return momentDate.get('day') !==6 && momentDate.get('day') !== 0 && !this.isFullyBooked(momentDate);
+        };
+      });
 
-  isFullyBooked(date: moment.Moment) {
-    return date.isSame(moment('2021-11-29'),'date') || date.isSame(moment('2021-11-30'),'date') || date.isSame(moment('2021-12-7'),'date');
+    }
+
+  isFullyBooked(date: moment.Moment): boolean {
+    for (let busyDate of this.busyDates) {
+      if (busyDate.isSame(date, 'date')) {
+        return true;
+      }
+    }
+    return false;
   }
 
   onDateChanged(event) {
@@ -76,9 +92,9 @@ export class Step3Component implements OnInit {
 
   getHourSelectors(date: moment.Moment) {
     this.dayTimeSlots = new Array();
-    let startDate = moment(date);
+    let startDate = moment(date).tz('Europe/Bucharest');
     startDate.set({hour:8,minute:0,second:0});
-    let endDate = moment(date);
+    let endDate = moment(date).tz('Europe/Bucharest');
     endDate.set({hour:16,minute:0,second:0});
     
     let tempDate = startDate;
@@ -86,18 +102,17 @@ export class Step3Component implements OnInit {
       this.dayTimeSlots.push(
         { busy: this.isSlotBusy(tempDate),
           selected: false,
-          time: moment(tempDate)
+          time: moment(tempDate).tz('Europe/Bucharest')
         });
       tempDate.add(15, 'minutes')
     }
   }
 
   private isSlotBusy(slotMoment) {
-    let momentString = slotMoment.format('DD-MM-YYYY hh:mm:ss');
     let isBusy = false;
-    this.reservations.forEach(r=> {
-      let rDate = r.date;
-      let resM:moment.Moment = moment(rDate,'DD.MM.YYYY hh:mm');
+    this.busySlots.forEach(bSlot=> {
+      let tempSlot = bSlot.date;
+      let resM:moment.Moment = moment(tempSlot).tz('Europe/Bucharest');
       if (resM.isSame(slotMoment, 'minute')) { 
         isBusy = true;
       }
@@ -108,6 +123,7 @@ export class Step3Component implements OnInit {
   clickSlot(timeSlot) {
     if (timeSlot.selected) {
       timeSlot.selected = false;
+      this.selecteDate = null;
       this.dateChanged.emit(null);
     } else {
       this.dayTimeSlots.filter(s => s.selected).forEach(s => s.selected= false);

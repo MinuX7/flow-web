@@ -55,7 +55,7 @@ export class Step2Component implements OnInit {
     flow.selected=!flow.selected;
     if (flow.selected) {
       this.selectedFlow = flow;
-      this.companyFlows.filter(f=>f.selected !==  null && f.id !== flow.id ).forEach(
+      this.companyFlows.filter(f=>f.selected !==  null && f.flowId !== flow.flowId ).forEach(
         f => f.selected = null
       );
     } else {

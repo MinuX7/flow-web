@@ -1,3 +1,16 @@
 <div>
-    {{flowModel | json}}
-</div>>
+    <p>
+        {{'Congratulations ' + flowModel.user.firstName + ' ' + flowModel.user.lastName+'! You have successfully create reservation
+        on ' + formatDate(flowModel.flowDate) +' for event ' + flowModel.flow.name +'. And email was sent to '+ flowModel.user.email + '.'}}
+    </p>
+</div>
+<div class="row bottom-buttons">
+    <div class="col-md-6">  
+    </div>
+    <div class="col-md-6">
+        <div class="right">
+            <button type="button" class="btn btn-primary right" (click)="doneFlow()" > Done </button> 
+        </div>
+    </div>
+</div>
+

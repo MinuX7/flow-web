@@ -1,6 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { FlowService } from '../flow-service.service';
+import { FlowModel } from '../model/flowmodel';
 
 @Component({
   selector: 'step4',
@@ -8,6 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./step4.component.css']
 })
 export class Step4Component implements OnInit {
+
+  @Input()
+  private flowModel:FlowModel;
 
   @Output()
   toStepEvent = new EventEmitter<number>();
@@ -17,17 +22,16 @@ export class Step4Component implements OnInit {
 
 
   userForm: FormGroup;
-  constructor(route: ActivatedRoute ) {
+  constructor(private _flowService: FlowService ) {
     this.userForm = new FormGroup({
       firstName: new FormControl('',[Validators.required]),
-      lastName: new FormControl(''),
-      email: new FormControl(''),
+      lastName: new FormControl('',[Validators.required]),
+      email: new FormControl('', [Validators.required]),
       comment: new FormControl(''),
       file: new FormControl(),
       fileContent: new FormControl
     });
-    const routeParams = route.snapshot.paramMap;
-    console.log(routeParams.get('company'));
+   
    }
 
   ngOnInit(): void {
@@ -37,8 +41,20 @@ export class Step4Component implements OnInit {
       );
   }
 
-  toStep(number) {
-    this.toStepEvent.emit(number);
+  onPreviousButtonClicked() {
+    this.toStepEvent.emit(3);
+  }
+
+  onNextButtonClicked() {
+    this._flowService.createReservetionEvent(this.flowModel).subscribe(data => {
+      console.log(data);
+      this.toStepEvent.emit(5);
+    },
+    error => {
+      console.error(error);
+      alert('Erroare trimitere cerere'+ error.error);
+    });
+  
   }
 
   onFileChange(event) {

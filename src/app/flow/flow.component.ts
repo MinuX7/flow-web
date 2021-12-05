@@ -26,6 +26,11 @@ export class FlowComponent implements OnInit {
     this.stepActive = step;
   }
 
+  toBegining(event) {
+    this.flowModel=  new FlowModel();
+    this.stepActive = 1;
+  }
+
   onCompanyChanged(event) {
     this.flowModel.company = event.company;
   }

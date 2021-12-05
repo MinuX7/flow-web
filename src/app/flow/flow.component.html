@@ -7,15 +7,20 @@
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-10 step-content">
+    
     <step1 *ngIf="stepActive == 1" [selectedCompany]="flowModel.company" [companyParam]="companyParam"
                 (toStepEvent)="toStep($event)" (companyChangeEmitter)="onCompanyChanged($event)" >
     </step1>
+    
     <step2 *ngIf="stepActive == 2" [selectedCompany]="flowModel.company" [selectedFlow]="flowModel.flow"
                 (toStepEvent)="toStep($event)" (flowChangedEvent)="onFlowChanged($event)"> 
     </step2>
-    <step3 *ngIf="stepActive == 3" (toStepEvent)="toStep($event)" (dateChanged)="onDateChanged($event)" 
-               (bookingOfficeChanged)="onBookingOfficeChanged($event)" [selectedBookingOffice]="flowModel.bookingOffice" ></step3>
-    <step4 *ngIf="stepActive == 4" (toStepEvent)="toStep($event)" (personGroupChanged)="onPersonGroupChanged($event)"></step4>
-    <step5 *ngIf="stepActive == 5" [flowModel]="flowModel" >  </step5>
+    
+    <step3 *ngIf="stepActive == 3" [selectedBookingOffice]="flowModel.bookingOffice" [flowModel]="flowModel" (toStepEvent)="toStep($event)" 
+          (dateChanged)="onDateChanged($event)" (bookingOfficeChanged)="onBookingOfficeChanged($event)"  ></step3>
+    
+    <step4 *ngIf="stepActive == 4" [flowModel]="flowModel" (toStepEvent)="toStep($event)" (personGroupChanged)="onPersonGroupChanged($event)"></step4>
+    
+      <step5 *ngIf="stepActive == 5" [flowModel]="flowModel" (toBegining)="toBegining($event)" >  </step5>
   </div>
 </div>
