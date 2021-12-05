@@ -3,7 +3,7 @@ div.wizard-content {
 }
 ol.wizard-list > li.step-wizard {        
     display: table-cell;
-    height: 30px;        
+    height: 70px;        
     position: relative;
     padding: 0px;
     margin: 0px;
@@ -12,7 +12,7 @@ ol.wizard-list > li.step-wizard {
 }
 ol.wizard-list > li.step-wizard > div {         
     position:relative;        
-    line-height: 30px; /* equal to the list item's height */
+    line-height: 70px; /* equal to the list item's height */
     height:100%;
     width: 100%;         
 }
@@ -31,7 +31,7 @@ ol.wizard-list {
 ol.wizard-list > li.step-wizard > div:after, ol.wizard-list > li.step-wizard > div:before {
     content:"";
     display:inline-block;        
-    border-width: 16px;
+    border-width: 36px;
     border-style: solid;
     width: 0px;
     height: 0px;
@@ -44,7 +44,7 @@ ol.wizard-list > li.step-wizard > div:after, ol.wizard-list > li.step-wizard.act
     border-color: transparent transparent transparent #3E93E5;
 }
 ol.wizard-list > li.step-wizard > div:before {
-    border-width: 14px;
+    border-width: 34px;
     display: block;
     border-color: transparent transparent transparent #ffffff;
     z-index: 2;

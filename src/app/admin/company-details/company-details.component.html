@@ -1,1 +1,12 @@
-<p>company-details works!</p>
+<div>
+    <table>
+        <thead></thead>
+        <tbody>
+            <tr *ngFor="let reservation of reservations">
+                <td> {{ reservation.reservationId }} </td>
+                <td> {{ reservation.flowName }} </td>
+                <td> {{ reservation.reservationStartTime }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReservationsService } from '../reservations.service';
 
 @Component({
   selector: 'company-details',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyDetailsComponent implements OnInit {
 
-  constructor() { }
+   reservations: Array<any>;
+  constructor(private reservationsService: ReservationsService) { }
 
   ngOnInit(): void {
+    this.reservationsService.getCompanyReservations('primaria-telesti').subscribe(data =>
+      this.reservations = data as Array<any>
+      )
   }
 
 }

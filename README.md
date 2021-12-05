@@ -31,3 +31,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 * `docker build -t flow-app .`
 * `docker tag flow-app 904262290464.dkr.ecr.eu-west-1.amazonaws.com/flow-frontend:v1.0`
 * `docker push 904262290464.dkr.ecr.eu-west-1.amazonaws.com/flow-frontend:v1.0`
+* `ECS create Task Definition`
+        `Crate new revision. Task role=none, TAsk memory=256, Add container. `
+            `Post mapping 80:80`
+        `Stop backend task `
+        `Run new task. Choose task definition.`
+
+* Run pg admin in docker
+ `podman run -e PGADMIN_DEFAULT_EMAIL=cosmin.dumitrache7@gmail.com -e PGADMIN_DEFAULT_PASSWORD=Password -p 5555:80 dpage/pgadmin4:latest`

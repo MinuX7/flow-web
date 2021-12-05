@@ -31,10 +31,10 @@ export class Step3Component implements OnInit {
   @Input()
   flowModel: FlowModel;
   busySlots: Array<any>= new Array();
-  busyDates: Array<any> = new Array();
+  busyDates: Map<string, number> = new Map();
   bookingOffices: Array<BookingOffice>= new Array();
   dayTimeSlots: Array<any> = new Array();
-  minDate = new Date();
+  minDate = new Date(2021,11,4);
   maxDate = new Date(2022,0,1);
   
   dateFilter = (date: Date) => {
@@ -43,8 +43,6 @@ export class Step3Component implements OnInit {
   }
   selecteDate: moment.Moment;
   constructor(private _flowService: FlowService) {
-    this.busyDates.push(moment('2021-12-09'));
-    this.busyDates.push(moment('2021-12-15'));
   }
 
   ngOnInit(): void {
@@ -66,21 +64,37 @@ export class Step3Component implements OnInit {
          let temp = {date: moment(d).tz('Europe/Bucharest')}
         return temp;
         });
+        this.buildBusyDaysMap();
         this.dateFilter = (date: Date) => {
           let momentDate = moment(date);
           return momentDate.get('day') !==6 && momentDate.get('day') !== 0 && !this.isFullyBooked(momentDate);
-        };
+        }
       });
 
     }
 
   isFullyBooked(date: moment.Moment): boolean {
-    for (let busyDate of this.busyDates) {
-      if (busyDate.isSame(date, 'date')) {
-        return true;
-      }
+
+    let key = date.format('DD-MM-YYYY');
+    let value = this.busyDates.get(key);
+    value = value? value: 0;
+    let officeEndTimeMoment: moment.Moment = moment(this.flowModel.bookingOffice.officeEndTime, 'HH:mm:ss');
+    let officeStartTimeMoment: moment.Moment = moment(this.flowModel.bookingOffice.officeStartTime, 'HH:mm:ss');
+    let duration = moment.duration(officeEndTimeMoment.diff(officeStartTimeMoment));
+    let diffMinutes = duration.asMinutes();
+    let maxReservations = diffMinutes/ this.flowModel.bookingOffice.slotDuration;
+    return value >=maxReservations;
+  }
+
+  private buildBusyDaysMap() {
+    this.busyDates = new Map();
+    for (let busySlot of this.busySlots) {
+      let slotDay: moment.Moment = busySlot.date;
+      let key = slotDay.format('DD-MM-YYYY');
+      let nr = this.busyDates.get(key);
+      let value = nr? nr+1: 1;
+      this.busyDates.set(key, value);
     }
-    return false;
   }
 
   onDateChanged(event) {
