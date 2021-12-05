@@ -36,11 +36,11 @@
 <div class="bottom-buttons">
 <div class="row bottom-buttons">
   <div class="col-md-6">
-        <button class="btn btn-primary" (click)="toStep(3)"> Previous </button>  
+        <button class="btn btn-primary" (click)="onPreviousButtonClicked()"> Previous </button>  
   </div>
   <div class="col-md-6">
       <div class="right">
-          <button type="button" class="btn btn-primary right" (click)="toStep(5)" [disabled]="!userForm.valid" > Next </button> 
+          <button type="button" class="btn btn-primary right" (click)="onNextButtonClicked()" [disabled]="!userForm.valid" > Next </button> 
       </div>
   </div>
 </div>

@@ -1,3 +1,7 @@
+div.card-body {
+    height: 10em;
+}
+
 div.card-selected div.card-header {
     background-color: blue;
     color: white;

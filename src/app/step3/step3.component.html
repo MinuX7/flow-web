@@ -1,7 +1,10 @@
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-3">
-        <div class="dropdown">
+        <div *ngIf="bookingOffices.length <=0">
+            Niciun ghiseu disponibil
+        </div>
+        <div *ngIf="bookingOffices.length >0" class="dropdown">
             <a class="btn btn-secondary dropdown-toggle drop-down-selection" role="button" id="booking-office-selector" 
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span *ngIf="!selectedBookingOffice"> Choose Booking Office </span>
@@ -16,7 +19,7 @@
     </div>
 </div>
  
-<div class="row">
+<div class="row" *ngIf="selectedBookingOffice">
     <div class="col-md-3"></div>
     <div class="col-md-3">
           <mat-calendar  [minDate]="minDate"  (selectedChange)="onDateChanged($event)" 
@@ -42,7 +45,7 @@
     </div>
     <div class="col-md-6">
         <div class="right">
-            <button type="button" class="btn btn-primary right" (click)="toStep(4)" [disabled]="!selecteDate"> Next </button> 
+            <button type="button" class="btn btn-primary right" (click)="toStep(4)" [disabled]="!(selecteDate  && selectedBookingOffice)"> Next </button> 
         </div>
     </div>
 </div>
