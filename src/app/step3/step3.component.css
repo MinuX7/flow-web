@@ -1,3 +1,7 @@
+div.dropdown-menu a {
+    cursor: pointer;
+}
+
 .dp-calendar-wrapper button {
     border: none;
 }

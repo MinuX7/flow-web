@@ -9,6 +9,7 @@ ol.wizard-list > li.step-wizard {
     margin: 0px;
     text-align: center;
     border: 1px solid #3E93E5;
+    min-width: 10em;
 }
 ol.wizard-list > li.step-wizard > div {         
     position:relative;        
@@ -49,4 +50,13 @@ ol.wizard-list > li.step-wizard > div:before {
     border-color: transparent transparent transparent #ffffff;
     z-index: 2;
     top:1px;
+}
+
+ol.wizard-list > li.visited > div {         
+    background-color: gray;         
+}
+
+
+ol.wizard-list > li.step-wizard.visited > div:before {
+    border-color: transparent transparent transparent gray;
 }

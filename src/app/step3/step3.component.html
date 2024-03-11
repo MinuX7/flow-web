@@ -5,8 +5,8 @@
             Niciun ghiseu disponibil
         </div>
         <div *ngIf="bookingOffices.length >0" class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle drop-down-selection" role="button" id="booking-office-selector" 
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="btn btn-primary btn-lg dropdown-toggle drop-down-selection" role="button" id="booking-office-selector" 
+                data-toggle="dropdown" dfaria-haspopup="true" aria-expanded="false">
               <span *ngIf="!selectedBookingOffice"> Choose Booking Office </span>
               <span *ngIf="selectedBookingOffice"> {{selectedBookingOffice.name}} </span>
             </a>
@@ -22,9 +22,8 @@
 <div class="row" *ngIf="selectedBookingOffice">
     <div class="col-md-3"></div>
     <div class="col-md-3">
-          <mat-calendar  [minDate]="minDate"  (selectedChange)="onDateChanged($event)" 
-          [dateFilter]="dateFilter"></mat-calendar>
-    </div>
+          <mat-calendar #calendar [minDate]="minDate" [maxDate]="maxDate" [dateFilter]="dateFilter" [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
+        </div>
     <div class="col-md-2">
         <div class="time-container">
             <div *ngFor="let dayTimeSlot of dayTimeSlots" (click)="!dayTimeSlot.busy && clickSlot(dayTimeSlot)" class="time-slot-item" 
@@ -36,7 +35,6 @@
 </div>
 <div class="row">
  <div>
-    {{ selecteDate | date: 'dd-MM-yyyy hh:mm:ss'}}
  </div>
  
 <div class="row">
@@ -45,7 +43,7 @@
     </div>
     <div class="col-md-6">
         <div class="right">
-            <button type="button" class="btn btn-primary right" (click)="toStep(4)" [disabled]="!(selecteDate  && selectedBookingOffice)"> Next </button> 
+            <button type="button" class="btn btn-primary right" (click)="toStep(4)" [disabled]="!(isSlotSelected  && selectedBookingOffice)"> Next </button> 
         </div>
     </div>
 </div>

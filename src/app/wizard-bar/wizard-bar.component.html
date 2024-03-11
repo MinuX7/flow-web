@@ -1,15 +1,15 @@
 <div class="wizard-content">
     <ol class="wizard-list">
-        <li class="step-wizard" [class.active]="stepActive==1">
+        <li class="step-wizard visited" [class.active]="stepActive==1" [class.visited]="stepActive>1">
             <div>Companie</div>
         </li>
-        <li class="step-wizard" [class.active]="stepActive==2">
+        <li class="step-wizard visited" [class.active]="stepActive==2" [class.visited]="stepActive>2">
             <div>Flow</div>
         </li>
-        <li class="step-wizard" [class.active]="stepActive==3">
+        <li class="step-wizard" [class.active]="stepActive==3" [class.visited]="stepActive>3">
             <div>Ghiseu/Programare</div>
         </li>
-        <li class="step-wizard" [class.active]="stepActive==4">
+        <li class="step-wizard" [class.active]="stepActive==4" [class.visited]="stepActive>4">
             <div>Detalii personale</div>
         </li>
         <li class="step-wizard" [class.active]="stepActive==5">

@@ -9,6 +9,7 @@ import { Company } from '../model/company';
 })
 export class Step1Component implements OnInit {
 
+  selectedDate: Date;
   @Output()
   toStepEvent = new EventEmitter<number>();
 

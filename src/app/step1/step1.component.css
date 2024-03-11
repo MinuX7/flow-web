@@ -20,3 +20,7 @@
     text-align: center;
 }
 
+div.dropdown-menu a {
+    cursor: pointer;
+}
+

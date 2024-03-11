@@ -17,4 +17,7 @@ div.card-header {
 
 div.flow-card {
     max-width: 70%;
+    cursor: pointer;
 }
+
+

@@ -1,7 +1,8 @@
 <div class="row step-content">   
 <div *ngFor="let companyFlow of companyFlows " class="col-md-4 col-sm-6">   
-    <div class="card card-default flow-card" [ngClass]="companyFlow.selected ? 'card-selected': 'card-unselected' ">
-        <div class="card-header" (click)="clickFlow(companyFlow)" >
+    <div class="card card-default flow-card" [ngClass]="companyFlow.selected ? 'card-selected': 'card-unselected' "
+                                            (click)="clickFlow(companyFlow)">
+        <div class="card-header" >
             <span>
             {{companyFlow.name}}     
             </span>

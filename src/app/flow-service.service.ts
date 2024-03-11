@@ -6,7 +6,7 @@ import { Company } from './model/company';
 import { Flow } from './model/flow';
 import { FlowModel } from './model/flowmodel';
 import * as moment from 'moment';
-// import  * as data  from './data/companies.json'
+import {formatDate} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -42,19 +42,23 @@ export class FlowService {
       companyId: flowModel.company.companyId,
       flowId: flowModel.flow.flowId,
       bookingOfficeId: flowModel.bookingOffice.id,
-      reservationStartTime: this.formatDate(flowModel.flowDate),
+      reservationStartTime: this.formatD(flowModel.flowDate),
       firstName: flowModel.user.firstName,
       lastName: flowModel.user.lastName,
       email: flowModel.user.email,
       comment: flowModel.user.comment,
-      creationTime: this.formatDate(moment())
+      creationTime: this.formatMoment(moment())
     }
     let reservationEventUrl = this.backendUrl + '/companies/' +  flowModel.company.companyId + '/reservations';
     return this.htppClient.post(reservationEventUrl, requestBody);
   }
 
-  private formatDate(date: moment.Moment) {
+  private formatMoment(date: moment.Moment) {
     return date.format('YYYY-MM-DDTHH:mm:ss');
+  }
+
+  private formatD(date:Date): string {
+    return formatDate(date, "yyyy-MM-dd'T'HH:mm:ss", 'en');
   }
 
 }

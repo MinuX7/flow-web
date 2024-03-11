@@ -46,6 +46,7 @@ export class Step4Component implements OnInit {
   }
 
   onNextButtonClicked() {
+    console.log(this.flowModel);
     this._flowService.createReservetionEvent(this.flowModel).subscribe(data => {
       console.log(data);
       this.toStepEvent.emit(5);
